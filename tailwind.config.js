@@ -59,6 +59,7 @@ module.exports = {
           300: '#90bcf8',
           200: '#daefff',
         },
+        hover: '#192750',
       },
       borderRadius: {
         lg: 'var(--radius)',

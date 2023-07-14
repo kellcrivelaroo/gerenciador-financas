@@ -8,21 +8,18 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import NavitationButton from './NavitationButton'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    // abrir side bar se largura da tela for maior que 767px
-    setIsOpen(window.innerWidth >= 767)
-  }, [])
+  // abrir side bar se largura da tela for maior que 767px
+  // const isLargeScreen = window?.innerWidth >= 767 || false
+  const [isOpen, setIsOpen] = useState(true)
 
   return (
     <aside
       data-open={isOpen}
       className="bg-primary text-neutral pt-8 pb-16 min-h-screen flex flex-col items-center justify-between 
-      shadow-2xl shadow-blue-700"
+      shadow-lg lg:shadow-2xl shadow-blue-700"
     >
       <div className="w-full flex flex-col items-center lg:items-start">
         <span
