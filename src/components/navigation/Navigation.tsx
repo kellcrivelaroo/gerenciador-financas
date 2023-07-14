@@ -28,7 +28,7 @@ export default function Navigation() {
         <span
           data-open={isOpen}
           className="text-2xl duration-500 transition-transform font-black my-8 w-full text-center 
-          data-[open=true]:scale-150"
+          data-[open=true]:scale-150 text-white"
         >
           Logo
         </span>
