@@ -1,0 +1,82 @@
+'use client'
+import {
+  Home,
+  BarChart,
+  Wallet,
+  DollarSign,
+  Crosshair,
+  ChevronRight,
+} from 'lucide-react'
+import NavitationButton from './NavitationButton'
+import { useEffect, useState } from 'react'
+
+export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    // abrir side bar se largura da tela for maior que 767px
+    setIsOpen(window.innerWidth >= 767)
+  }, [])
+
+  return (
+    <aside
+      data-open={isOpen}
+      className="bg-primary text-neutral pt-8 pb-16 min-h-screen flex flex-col items-center justify-between"
+    >
+      <div className="w-full flex flex-col items-center lg:items-start">
+        <span className="text-2xl font-black my-8 w-full text-center">
+          Logo
+        </span>
+        <nav
+          data-open={isOpen}
+          className="max-w-[80px] min-w-[80px] data-[open=true]:max-w-[220px] data-[open=true]:min-w-[220px]
+        transition-all duration-500 overflow-hidden"
+        >
+          <ul className="flex flex-col text-lg">
+            <NavitationButton
+              href="/"
+              icon={Home}
+              text="Home"
+              isOpen={isOpen}
+            />
+            <NavitationButton
+              href="/nova-despesa"
+              icon={DollarSign}
+              text="Nova Despesa"
+              isOpen={isOpen}
+            />
+            <NavitationButton
+              href="/nova-receita"
+              icon={Wallet}
+              text="Nova Receita"
+              isOpen={isOpen}
+            />
+            <NavitationButton
+              href="/graficos"
+              icon={BarChart}
+              text="Gráficos"
+              isOpen={isOpen}
+            />
+            <NavitationButton
+              href="/metas"
+              icon={Crosshair}
+              text="Metas"
+              isOpen={isOpen}
+            />
+          </ul>
+        </nav>
+      </div>
+      <button
+        className="bg-blue-700 p-2 rounded-lg"
+        onClick={() => {
+          setIsOpen(!isOpen)
+        }}
+      >
+        <ChevronRight
+          data-open={isOpen}
+          className="rotate-0 data-[open=true]:rotate-180 transition-transform duration-300"
+        />
+      </button>
+    </aside>
+  )
+}

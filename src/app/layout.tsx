@@ -1,3 +1,4 @@
+import Navigation from '@/components/navigation/Navigation'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={quicksand.className}>{children}</body>
+      <body className={`${quicksand.className} bg-neutral flex`}>
+        <Navigation />
+        {children}
+      </body>
     </html>
   )
 }
