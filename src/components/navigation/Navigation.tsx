@@ -21,10 +21,15 @@ export default function Navigation() {
   return (
     <aside
       data-open={isOpen}
-      className="bg-primary text-neutral pt-8 pb-16 min-h-screen flex flex-col items-center justify-between"
+      className="bg-primary text-neutral pt-8 pb-16 min-h-screen flex flex-col items-center justify-between 
+      shadow-2xl shadow-blue-700"
     >
       <div className="w-full flex flex-col items-center lg:items-start">
-        <span className="text-2xl font-black my-8 w-full text-center">
+        <span
+          data-open={isOpen}
+          className="text-2xl duration-500 transition-transform font-black my-8 w-full text-center 
+          data-[open=true]:scale-150"
+        >
           Logo
         </span>
         <nav
@@ -67,7 +72,7 @@ export default function Navigation() {
         </nav>
       </div>
       <button
-        className="bg-blue-700 p-2 rounded-lg"
+        className="bg-blue-700 p-2 rounded-lg border border-transparent hover:border-blue-200/10 hover:brightness-110"
         onClick={() => {
           setIsOpen(!isOpen)
         }}
