@@ -1,6 +1,10 @@
 'use client'
+import { cn } from '@/lib/utils'
+import { format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-
+import { Input } from '@/components/ui/input'
+import { Calendar } from '@/components/ui/calendar'
 import {
   FormField,
   FormItem,
@@ -9,23 +13,12 @@ import {
   Form,
   FormMessage,
 } from '@/components/ui/form'
-
-import { cn } from '@/lib/utils'
-import { format } from 'date-fns'
-import { CalendarIcon } from 'lucide-react'
-
-import { Input } from '@/components/ui/input'
-
-import { Calendar } from '@/components/ui/calendar'
-
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-
 import {
   Select,
   SelectContent,
@@ -36,16 +29,41 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useState } from 'react'
+import SuccessDialog from './SuccessDialog'
+
+interface ExpenseProps {
+  data: Date | undefined
+  categoria: string
+  valor: number
+  descricao: string
+  pago: string
+}
 
 export default function ExpensesForm() {
-  const form = useForm()
+  const [success, setSuccess] = useState(false)
+  const form = useForm<ExpenseProps>()
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const localStorageExpenses =
+    typeof window !== 'undefined' ? localStorage.getItem('expenses') : ''
+  const existingExpenses =
+    localStorageExpenses !== null && typeof window !== 'undefined'
+      ? JSON.parse(localStorageExpenses)
+      : []
+
+  const onSubmit: SubmitHandler<ExpenseProps> = (data) => {
+    const expense = {
+      ...data,
+    }
+    const uptatedExpenses = [...existingExpenses, expense]
+    localStorage.setItem('expenses', JSON.stringify(uptatedExpenses))
+    setSuccess(true)
   }
+
   return (
     <Form {...form}>
+      {success && <SuccessDialog />}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {/* Data */}
         <FormField
@@ -126,7 +144,7 @@ export default function ExpensesForm() {
             <FormItem>
               <FormLabel>Valor</FormLabel>
               <FormControl>
-                <Input type="number" required {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,7 +159,7 @@ export default function ExpensesForm() {
             <FormItem>
               <FormLabel>Descrição</FormLabel>
               <FormControl>
-                <Input required {...field} />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -159,19 +177,19 @@ export default function ExpensesForm() {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex space-x-2 items-center"
+                  className="flex space-x-4 items-center"
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="sim" />
+                      <RadioGroupItem value="true" />
                     </FormControl>
-                    <FormLabel className="font-normal">Sim</FormLabel>
+                    <FormLabel>Sim</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="nao" />
+                      <RadioGroupItem value="false" />
                     </FormControl>
-                    <FormLabel className="font-normal">Não</FormLabel>
+                    <FormLabel>Não</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -179,7 +197,6 @@ export default function ExpensesForm() {
             </FormItem>
           )}
         />
-        <div></div>
         <Button>Cadastrar Despesa</Button>
       </form>
     </Form>

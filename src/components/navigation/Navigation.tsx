@@ -18,13 +18,13 @@ export default function Navigation() {
   return (
     <aside
       data-open={isOpen}
-      className="bg-primary text-neutral pt-8 pb-16 min-h-screen flex flex-col items-center justify-between 
+      className="bg-primary text-neutral pt-2 pb-12 lg:pt-7 lg:pb-16 min-h-screen flex flex-col items-center justify-between 
       shadow-lg lg:shadow-2xl shadow-blue-700"
     >
       <div className="w-full flex flex-col items-center lg:items-start">
         <span
           data-open={isOpen}
-          className="text-2xl duration-500 transition-transform font-black my-8 w-full text-center 
+          className="text-2xl duration-500 transition-transform font-black my-8 w-full text-center
           data-[open=true]:scale-150 text-white"
         >
           Logo

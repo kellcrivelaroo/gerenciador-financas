@@ -19,6 +19,10 @@
   --radius: 0.5rem;
 }
 
+.layout {
+  @apply w-full p-5 lg:py-10 lg:px-20;
+}
+
 h1 {
-  @apply text-4xl font-bold;
+  @apply text-3xl lg:text-4xl font-bold mb-1;
 }
