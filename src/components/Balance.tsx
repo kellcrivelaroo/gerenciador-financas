@@ -17,11 +17,22 @@ const getBalance = (): number => {
 }
 
 export default function Balance() {
-  const [balance, setBalance] = useState(formatCurrency(0))
+  const [balance, setBalance] = useState(0)
 
   useEffect(() => {
-    setBalance(formatCurrency(getBalance()))
+    setBalance(getBalance())
   }, [])
 
-  return <div>Saldo: {balance}</div>
+  return (
+    <div>
+      <span className="mr-3">Saldo:</span>
+      <span
+        className={`px-3 py-1 bg-white rounded-md border text-2xl ${
+          balance >= 0 ? 'text-green-600' : 'text-red-600'
+        }`}
+      >
+        {formatCurrency(balance)}
+      </span>
+    </div>
+  )
 }

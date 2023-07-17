@@ -79,7 +79,7 @@ export default function ExpensesForm() {
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={field.onChange}
+                    onDayClick={field.onChange}
                     initialFocus
                   />
                 </PopoverContent>
@@ -107,13 +107,13 @@ export default function ExpensesForm() {
                     <SelectLabel className="text-slate-500 font-medium">
                       Categoria
                     </SelectLabel>
-                    <SelectItem value="alimentacao">Alimentação</SelectItem>
-                    <SelectItem value="casa">Casa</SelectItem>
-                    <SelectItem value="educacao">Educação</SelectItem>
-                    <SelectItem value="lazer">Lazer</SelectItem>
-                    <SelectItem value="pessoal">Pessoal</SelectItem>
-                    <SelectItem value="saude">Saúde</SelectItem>
-                    <SelectItem value="viagem">Viagem</SelectItem>
+                    <SelectItem value="Alimentação">Alimentação</SelectItem>
+                    <SelectItem value="Casa">Casa</SelectItem>
+                    <SelectItem value="Educação">Educação</SelectItem>
+                    <SelectItem value="Lazer">Lazer</SelectItem>
+                    <SelectItem value="Pessoal">Pessoal</SelectItem>
+                    <SelectItem value="Saúde">Saúde</SelectItem>
+                    <SelectItem value="Viagem">Viagem</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -166,13 +166,13 @@ export default function ExpensesForm() {
                 >
                   <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="true" />
+                      <RadioGroupItem value="Sim" />
                     </FormControl>
                     <FormLabel>Sim</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="false" />
+                      <RadioGroupItem value="Não" />
                     </FormControl>
                     <FormLabel>Não</FormLabel>
                   </FormItem>

@@ -19,8 +19,8 @@
   --radius: 0.5rem;
 }
 
-main{
-  @apply w-full p-5 lg:py-10 lg:px-20;
+main {
+  @apply w-[calc(100vw-60px)] p-5 lg:py-10 lg:px-20;
 }
 
 h1 {

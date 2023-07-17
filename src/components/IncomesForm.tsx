@@ -78,7 +78,7 @@ export default function IncomesForm() {
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={field.onChange}
+                    onDayClick={field.onChange}
                     initialFocus
                   />
                 </PopoverContent>
@@ -106,12 +106,12 @@ export default function IncomesForm() {
                     <SelectLabel className="text-slate-500 font-medium">
                       Categoria
                     </SelectLabel>
-                    <SelectItem value="salario">Salário</SelectItem>
-                    <SelectItem value="receita-variavel">
+                    <SelectItem value="Salário">Salário</SelectItem>
+                    <SelectItem value="Receita variável">
                       Receita variável
                     </SelectItem>
-                    <SelectItem value="investimento">Investimento</SelectItem>
-                    <SelectItem value="outro">Outro</SelectItem>
+                    <SelectItem value="Investimento">Investimento</SelectItem>
+                    <SelectItem value="Outro">Outro</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

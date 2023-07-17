@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { DataTable } from './table/DataTable'
 import { columns } from './table/Columns'
 import { TransactionProps, transactionTableProps } from '@/lib/interfaces'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getTransactions } from '@/lib/utils'
 
 // const data: transactionTableProps[] = [
@@ -27,11 +27,29 @@ import { getTransactions } from '@/lib/utils'
 //   },
 // ]
 
+const sortTransactions = (transactions: TransactionProps[]) => {
+  const sortedTransactions = transactions.sort((a, b) => {
+    const dateA = new Date(a.data)
+    const dateB = new Date(b.data)
+
+    if (dateA < dateB) {
+      return 1
+    } else if (dateA > dateB) {
+      return -1
+    } else {
+      return 0
+    }
+  })
+
+  return sortedTransactions
+}
+
 export default function Transactions() {
-  const data: transactionTableProps[] = []
+  const [transactions, setTransactions] = useState<TransactionProps[]>([])
   useEffect(() => {
-    console.log('oi')
+    const storedTransactions = getTransactions()
+    setTransactions(sortTransactions(storedTransactions))
   }, [])
 
-  return <DataTable columns={columns} data={data} />
+  return <DataTable columns={columns} data={transactions} />
 }

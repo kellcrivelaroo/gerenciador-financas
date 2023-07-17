@@ -24,15 +24,16 @@ export default function Navigation() {
       <div className="w-full flex flex-col items-center lg:items-start">
         <span
           data-open={isOpen}
-          className="text-2xl duration-500 transition-transform font-black my-8 w-full text-center
+          className="text-xl duration-500 transition-transform font-black my-8 w-full text-center
           data-[open=true]:scale-150 text-white"
         >
           Logo
         </span>
         <nav
           data-open={isOpen}
-          className="max-w-[80px] min-w-[80px] data-[open=true]:max-w-[220px] data-[open=true]:min-w-[220px]
-        transition-all duration-500 overflow-hidden"
+          className="max-w-[60px] min-w-[60px] data-[open=true]:max-w-[100vw] data-[open=true]:min-w-[100vw]
+        transition-all duration-500 overflow-hidden lg:data-[open=true]:max-w-[240px] lg:data-[open=true]:min-w-[240px]
+        lg:max-w-[80px] lg:min-w-[80px]"
         >
           <ul className="flex flex-col text-lg">
             <NavitationButton

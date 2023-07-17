@@ -1,31 +1,50 @@
 'use client'
-import { transactionTableProps } from '@/lib/interfaces'
+import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { formatCurrency } from '@/lib/utils'
 import { ColumnDef } from '@tanstack/react-table'
+import { format } from 'date-fns'
 
-function Header(title: string) {
-  return <div className="">{title}</div>
-}
+// function Header(title: string) {
+//   return <div className="">{title}</div>
+// }
 
-export const columns: ColumnDef<transactionTableProps>[] = [
+export const columns: ColumnDef<TransactionProps>[] = [
   {
     accessorKey: 'data',
-    header: () => Header('Data'),
+    header: 'Data',
+    cell: ({ row }) => {
+      const data: Date = row.getValue('data')
+      const formatted = format(new Date(data), 'dd/MM/yyyy')
+
+      return <div className="">{formatted}</div>
+    },
   },
   {
-    accessorKey: 'transacao',
+    accessorKey: 'tipo',
     header: 'Transação',
+    cell: ({ row }) => {
+      const transaction: transactionTypes = row.getValue('tipo')
+      const formatted =
+        transaction === transactionTypes.expense ? 'Despesa' : 'Receita'
+
+      return <div className="">{formatted}</div>
+    },
   },
   {
     accessorKey: 'categoria',
     header: 'Categoria',
+    cell: ({ row }) => {
+      const category: string = row.getValue('categoria')
+
+      return <div className="">{category}</div>
+    },
   },
   {
     accessorKey: 'valor',
     header: 'Valor',
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('valor'))
-      const formatted = formatCurrency(amount)
+      const value = parseFloat(row.getValue('valor'))
+      const formatted = formatCurrency(value)
 
       return <div className="">{formatted}</div>
     },
