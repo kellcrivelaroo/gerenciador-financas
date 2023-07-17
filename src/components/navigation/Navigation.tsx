@@ -12,7 +12,8 @@ import { useState } from 'react'
 
 export default function Navigation() {
   // fechar side bar se largura da tela for maior que 767px
-  const isLargeScreen = window?.innerWidth >= 767 || false
+  const isLargeScreen =
+    (typeof window !== 'undefined' && window?.innerWidth >= 767) || false
   const [isOpen, setIsOpen] = useState(isLargeScreen)
 
   return (
