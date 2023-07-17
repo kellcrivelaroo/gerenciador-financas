@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { cn, getLocalStorage } from '@/lib/utils'
+import { cn, getTransactions, setTransactions } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -32,20 +32,17 @@ import {
 
 import { useForm, SubmitHandler } from 'react-hook-form'
 import SuccessDialog from './SuccessModal'
-import { ExpenseProps } from '@/lib/interfaces'
+import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 
 export default function ExpensesForm() {
   const [success, setSuccess] = useState(false)
-  const form = useForm<ExpenseProps>()
+  const form = useForm<TransactionProps>()
 
-  const expenses = getLocalStorage('expenses')
+  const transactions = getTransactions()
 
-  const onSubmit: SubmitHandler<ExpenseProps> = (data) => {
-    const newExpense = {
-      ...data,
-    }
-    const uptatedExpenses = [...expenses, newExpense]
-    localStorage.setItem('expenses', JSON.stringify(uptatedExpenses))
+  const onSubmit: SubmitHandler<TransactionProps> = (data) => {
+    data.tipo = transactionTypes.expense
+    setTransactions(data, transactions)
     setSuccess(true)
   }
 

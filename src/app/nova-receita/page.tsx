@@ -2,7 +2,7 @@ import IncomesForm from '@/components/IncomesForm'
 
 export default function Despesas() {
   return (
-    <main className="layout">
+    <main>
       <header className="mb-8">
         <h1>Cadastro de Receitas</h1>
         <p className="text-lg">

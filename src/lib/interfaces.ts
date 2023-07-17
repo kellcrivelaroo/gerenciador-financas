@@ -1,14 +1,20 @@
-export interface ExpenseProps {
-  data: Date | undefined
-  categoria: string
-  valor: number
-  descricao: string
-  pago: string
+export enum transactionTypes {
+  expense,
+  income,
 }
 
-export interface IncomeProps {
+export interface TransactionProps {
   data: Date | undefined
+  tipo: transactionTypes
   categoria: string
   valor: number
   descricao: string
+  pago?: string
+}
+
+export interface transactionTableProps {
+  data: string
+  transacao: string
+  categoria: string
+  valor: number
 }

@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { cn, getLocalStorage } from '@/lib/utils'
+import { cn, getTransactions, setTransactions } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -31,20 +31,17 @@ import {
 
 import SuccessDialog from './SuccessModal'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { IncomeProps } from '@/lib/interfaces'
+import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 
 export default function IncomesForm() {
   const [success, setSuccess] = useState(false)
-  const form = useForm<IncomeProps>()
+  const form = useForm<TransactionProps>()
 
-  const incomes = getLocalStorage('incomes')
+  const transactions = getTransactions()
 
-  const onSubmit: SubmitHandler<IncomeProps> = (data) => {
-    const newIncome = {
-      ...data,
-    }
-    const uptatedIncomes = [...incomes, newIncome]
-    localStorage.setItem('incomes', JSON.stringify(uptatedIncomes))
+  const onSubmit: SubmitHandler<TransactionProps> = (data) => {
+    data.tipo = transactionTypes.income
+    setTransactions(data, transactions)
     setSuccess(true)
   }
 

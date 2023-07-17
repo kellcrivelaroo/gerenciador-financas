@@ -19,7 +19,7 @@
   --radius: 0.5rem;
 }
 
-.layout {
+main{
   @apply w-full p-5 lg:py-10 lg:px-20;
 }
 
