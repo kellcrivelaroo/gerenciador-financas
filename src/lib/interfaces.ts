@@ -11,10 +11,3 @@ export interface TransactionProps {
   descricao: string
   pago?: string
 }
-
-export interface transactionTableProps {
-  data: string
-  transacao: string
-  categoria: string
-  valor: number
-}

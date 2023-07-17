@@ -20,7 +20,8 @@
 }
 
 main {
-  @apply w-[calc(100vw-60px)] p-5 lg:py-10 lg:px-20;
+  @apply p-5 lg:py-10 lg:px-20 pl-[80px] lg:pl-20 w-[100vw] lg:w-full;
+  
 }
 
 h1 {

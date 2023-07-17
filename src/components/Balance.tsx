@@ -27,7 +27,7 @@ export default function Balance() {
     <div>
       <span className="mr-3">Saldo:</span>
       <span
-        className={`px-3 py-1 bg-white rounded-md border text-2xl ${
+        className={`px-3 py-1 bg-background rounded-md border text-xl lg:text-2xl ${
           balance >= 0 ? 'text-green-600' : 'text-red-600'
         }`}
       >
