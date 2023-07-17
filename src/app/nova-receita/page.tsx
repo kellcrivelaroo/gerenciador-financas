@@ -1,10 +1,17 @@
-export default function Receitas() {
+import IncomesForm from '@/components/IncomesForm'
+
+export default function Despesas() {
   return (
-    <main className="overflow-hidden w-full p-10">
-      <header className="mb-6">
-        <h1>Cadastro de Receita</h1>
+    <main className="layout">
+      <header className="mb-8">
+        <h1>Cadastro de Receitas</h1>
+        <p className="text-lg">
+          Digite os dados da receita que deseja registrar:
+        </p>
       </header>
-      <section></section>
+      <section className="grid grid-cols-1 lg:grid-cols-2">
+        <IncomesForm />
+      </section>
     </main>
   )
 }

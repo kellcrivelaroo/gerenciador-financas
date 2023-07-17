@@ -1,3 +1,5 @@
+import Balance from '@/components/Balance'
+
 export default function Home() {
   return (
     <main className="layout">
@@ -6,7 +8,7 @@ export default function Home() {
         <span className="text-xl lg:text-2xl text-hover">Bem-vindo(a)!</span>
       </header>
       <section>
-        <span>Saldo: R$ 4.000,00</span>
+        <Balance />
       </section>
     </main>
   )

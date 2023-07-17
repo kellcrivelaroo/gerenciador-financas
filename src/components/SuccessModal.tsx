@@ -2,11 +2,15 @@ import { Check } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function SuccessDialog({
-  timeout = 2000,
-}: {
+interface SuccessModalProps {
   timeout?: number
-}) {
+  content: string
+}
+
+export default function SuccessModal({
+  timeout = 2000,
+  content,
+}: SuccessModalProps) {
   const router = useRouter()
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +32,7 @@ export default function SuccessDialog({
           Sucesso
         </header>
         <span className="py-5 lg:py-8 pl-3 pr-8 text-base font-bold">
-          Despesa registrada com sucesso!
+          {content}
         </span>
       </div>
     </div>

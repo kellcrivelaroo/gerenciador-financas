@@ -14,7 +14,6 @@ import {
   Form,
   FormMessage,
 } from '@/components/ui/form'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
   Popover,
   PopoverContent,
@@ -30,28 +29,28 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import { useForm, SubmitHandler } from 'react-hook-form'
 import SuccessDialog from './SuccessModal'
-import { ExpenseProps } from '@/lib/interfaces'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { IncomeProps } from '@/lib/interfaces'
 
-export default function ExpensesForm() {
+export default function IncomesForm() {
   const [success, setSuccess] = useState(false)
-  const form = useForm<ExpenseProps>()
+  const form = useForm<IncomeProps>()
 
-  const expenses = getLocalStorage('expenses')
+  const incomes = getLocalStorage('incomes')
 
-  const onSubmit: SubmitHandler<ExpenseProps> = (data) => {
-    const newExpense = {
+  const onSubmit: SubmitHandler<IncomeProps> = (data) => {
+    const newIncome = {
       ...data,
     }
-    const uptatedExpenses = [...expenses, newExpense]
-    localStorage.setItem('expenses', JSON.stringify(uptatedExpenses))
+    const uptatedIncomes = [...incomes, newIncome]
+    localStorage.setItem('incomes', JSON.stringify(uptatedIncomes))
     setSuccess(true)
   }
 
   return (
     <Form {...form}>
-      {success && <SuccessDialog content="Despesa cadastrada com sucesso!" />}
+      {success && <SuccessDialog content="Receita cadastrada com sucesso!" />}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {/* Data */}
         <FormField
@@ -110,13 +109,12 @@ export default function ExpensesForm() {
                     <SelectLabel className="text-slate-500 font-medium">
                       Categoria
                     </SelectLabel>
-                    <SelectItem value="alimentacao">Alimentação</SelectItem>
-                    <SelectItem value="casa">Casa</SelectItem>
-                    <SelectItem value="educacao">Educação</SelectItem>
-                    <SelectItem value="lazer">Lazer</SelectItem>
-                    <SelectItem value="pessoal">Pessoal</SelectItem>
-                    <SelectItem value="saude">Saúde</SelectItem>
-                    <SelectItem value="viagem">Viagem</SelectItem>
+                    <SelectItem value="salario">Salário</SelectItem>
+                    <SelectItem value="receita-variavel">
+                      Receita variável
+                    </SelectItem>
+                    <SelectItem value="investimento">Investimento</SelectItem>
+                    <SelectItem value="outro">Outro</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -148,38 +146,6 @@ export default function ExpensesForm() {
               <FormLabel>Descrição</FormLabel>
               <FormControl>
                 <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Pago */}
-        <FormField
-          control={form.control}
-          name="pago"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Pago:</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex space-x-4 items-center"
-                >
-                  <FormItem className="flex items-center space-x-2 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="true" />
-                    </FormControl>
-                    <FormLabel>Sim</FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-2 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="false" />
-                    </FormControl>
-                    <FormLabel>Não</FormLabel>
-                  </FormItem>
-                </RadioGroup>
               </FormControl>
               <FormMessage />
             </FormItem>
