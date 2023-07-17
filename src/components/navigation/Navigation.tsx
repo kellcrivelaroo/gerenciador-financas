@@ -22,7 +22,7 @@ export default function Navigation() {
       className="bg-primary text-neutral pt-2 pb-12 lg:pt-7 lg:pb-16 min-h-screen flex flex-col items-center
       shadow-lg lg:shadow-2xl shadow-blue-700 max-w-[60px] min-w-[60px] data-[open=true]:max-w-[100vw] data-[open=true]:min-w-[100vw]
       transition-all duration-500 overflow-hidden lg:data-[open=true]:max-w-[240px] lg:data-[open=true]:min-w-[240px]
-      lg:max-w-[80px] lg:min-w-[80px] fixed lg:relative inset-0 z-50"
+      lg:max-w-[80px] lg:min-w-[80px] fixed lg:relative inset-0 z-40"
     >
       <div className="w-full flex flex-col items-center lg:items-start">
         <span

@@ -21,7 +21,7 @@ export default function SuccessModal({
   return (
     <div
       className="min-h-screen min-w-[100vw] fixed top-0 left-0 bg-slate-800/30 backdrop-blur-sm
-    flex items-center justify-center z-20 p-4"
+    flex items-center justify-center z-50 p-4"
     >
       <div
         className="bg-neutral rounded-lg flex flex-col justify-between divide-y divide-blue-700/20 py-2 px-3 lg:px-5
