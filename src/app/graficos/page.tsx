@@ -4,7 +4,7 @@ export default function Graficos() {
       <header className="mb-6">
         <h1>Gráficos</h1>
       </header>
-      <section></section>
+      <section>Em desenvolvimento</section>
     </main>
   )
 }

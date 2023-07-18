@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="flex flex-col h-fit lg:h-full justify-between">
+    <div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>

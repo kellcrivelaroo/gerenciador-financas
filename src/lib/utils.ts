@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { TransactionProps } from './interfaces'
+import { z } from 'zod'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -35,3 +36,28 @@ export const formatCurrency = (value: number): string => {
 
   return realFormat.format(value)
 }
+
+export const transactionsFormSchema = z.object({
+  data: z.date({
+    required_error: 'Selecione uma data',
+    invalid_type_error: 'Data inválida',
+  }),
+  categoria: z.string({ required_error: 'Selecione uma categoria' }),
+  valor: z.coerce
+    .number({
+      required_error: 'Digite o valor da transação',
+      invalid_type_error: 'Valor inválido',
+    })
+    .positive({ message: 'O valor deve ser maior que R$ 0,00' }),
+  descricao: z
+    .string({
+      required_error: 'Digite uma descrição para a transação',
+      invalid_type_error: 'Descrição inválida',
+    })
+    .min(3, 'A descrição deve conter no mínimo 3 dígitos'),
+  pago: z.string({
+    required_error: 'Selecione uma opção',
+    invalid_type_error: 'Opção inválida',
+  }),
+  teste: z.optional(z.string()),
+})

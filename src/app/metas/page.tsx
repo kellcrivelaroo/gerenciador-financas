@@ -4,7 +4,7 @@ export default function Metas() {
       <header className="mb-6">
         <h1>Suas Metas</h1>
       </header>
-      <section></section>
+      <section>Em desenvolvimento</section>
     </main>
   )
 }

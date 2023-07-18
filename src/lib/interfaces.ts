@@ -4,6 +4,7 @@ export enum transactionTypes {
 }
 
 export interface TransactionProps {
+  id: string
   data: Date
   tipo: transactionTypes
   categoria: string

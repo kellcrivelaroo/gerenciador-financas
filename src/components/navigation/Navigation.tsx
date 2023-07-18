@@ -11,10 +11,7 @@ import NavitationButton from './NavitationButton'
 import { useState } from 'react'
 
 export default function Navigation() {
-  // fechar side bar se largura da tela for maior que 767px
-  const isLargeScreen =
-    (typeof window !== 'undefined' && window?.innerWidth >= 767) || false
-  const [isOpen, setIsOpen] = useState(isLargeScreen)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <aside
@@ -71,7 +68,7 @@ export default function Navigation() {
         <button
           className="bg-blue-700 flex justify-center p-2 w-full rounded-lg border border-transparent hover:border-blue-200/10 hover:brightness-110"
           onClick={() => {
-            setIsOpen(!isOpen)
+            setIsOpen((current) => !current)
           }}
         >
           <ChevronRight

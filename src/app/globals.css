@@ -27,3 +27,7 @@ main {
 h1 {
   @apply text-3xl lg:text-4xl font-bold mb-1 text-blue-700;
 }
+
+.erro {
+  margin: 4px!important;
+}
