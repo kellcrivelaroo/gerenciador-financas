@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { TransactionProps } from './interfaces'
-import { z } from 'zod'
+import { TransactionProps, transactionTypes } from './interfaces'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -37,36 +36,52 @@ export const formatCurrency = (value: number): string => {
   return realFormat.format(value)
 }
 
-export const transactionsFormSchema = z.object({
-  data: z.date({
-    required_error: 'Selecione uma data',
-    invalid_type_error: 'Data inválida',
-  }),
-  categoria: z.string({ required_error: 'Selecione uma categoria' }),
-  valor: z.preprocess(
-    (v) => {
-      const value = String(v)
-      const noCurrencySymbleValue = String(value)
-        .slice(3, String(value).length)
-        .replace('.', '')
-        .replace(',', '.')
+export const getValues = (transactions: TransactionProps[]) => {
+  const data = []
+  let expenses = 0
+  let incomes = 0
+  transactions.forEach((transaction) => {
+    if (transaction.tipo === transactionTypes.expense) {
+      expenses += transaction.valor
+    } else {
+      incomes += transaction.valor
+    }
+  })
+  data.push({
+    type: 'Despesas',
+    value: expenses,
+    color: '#182931',
+  })
+  data.push({
+    type: 'Receitas',
+    value: incomes,
+    color: '#942034',
+  })
+  return data
+}
 
-      return Number(noCurrencySymbleValue)
-    },
-    z
-      .number({ invalid_type_error: 'Valor inválido' })
-      .positive('O valor deve ser maior que R$ 0,00'),
-  ),
-  descricao: z
-    .string({
-      required_error: 'Digite uma descrição para a transação',
-      invalid_type_error: 'Descrição inválida',
-    })
-    .min(3, 'A descrição deve conter no mínimo 3 dígitos'),
-  pago: z.optional(
-    z.string({
-      required_error: 'Selecione uma opção',
-      invalid_type_error: 'Opção inválida',
-    }),
-  ),
-})
+interface valueByCategory {
+  category: string
+  value: number
+}
+
+export const getCategoryValues = (
+  transactions: TransactionProps[],
+  type: transactionTypes,
+) => {
+  const categories: string[] = []
+  const data: valueByCategory[] = []
+  transactions.forEach((transaction) => {
+    console.log(categories)
+    if (transaction.tipo === type) {
+      if (!categories.includes(transaction.categoria)) {
+        categories.push(transaction.categoria)
+        data.push({ category: transaction.categoria, value: transaction.valor })
+      } else {
+        data[categories.indexOf(transaction.categoria)].value +=
+          transaction.valor
+      }
+    }
+  })
+  return data
+}

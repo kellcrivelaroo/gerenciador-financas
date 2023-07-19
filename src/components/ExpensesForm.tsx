@@ -1,11 +1,6 @@
 'use client'
 import { useState } from 'react'
-import {
-  cn,
-  transactionsFormSchema,
-  getTransactions,
-  setTransactions,
-} from '@/lib/utils'
+import { cn, getTransactions, setTransactions } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -35,12 +30,14 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler, SubmitHandler } from 'react-hook-form'
 import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { Modal } from './modal'
 import { v4 } from 'uuid'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CurrencyInput } from './ui/currency-input'
+import { transactionsFormSchema } from '@/lib/schemas'
+import { expenseCategories } from '@/lib/categories'
 
 const transactions = getTransactions()
 
@@ -127,13 +124,11 @@ export default function ExpensesForm() {
                       <SelectLabel className="text-slate-500 font-medium">
                         Categoria
                       </SelectLabel>
-                      <SelectItem value="Alimentação">Alimentação</SelectItem>
-                      <SelectItem value="Casa">Casa</SelectItem>
-                      <SelectItem value="Educação">Educação</SelectItem>
-                      <SelectItem value="Lazer">Lazer</SelectItem>
-                      <SelectItem value="Pessoal">Pessoal</SelectItem>
-                      <SelectItem value="Saúde">Saúde</SelectItem>
-                      <SelectItem value="Viagem">Viagem</SelectItem>
+                      {expenseCategories.map((category, index) => (
+                        <SelectItem key={index} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>

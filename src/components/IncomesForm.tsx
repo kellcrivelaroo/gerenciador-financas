@@ -1,12 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { v4 } from 'uuid'
-import {
-  cn,
-  getTransactions,
-  setTransactions,
-  transactionsFormSchema,
-} from '@/lib/utils'
+import { cn, getTransactions, setTransactions } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -36,10 +31,16 @@ import {
 } from '@/components/ui/select'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { TransactionProps, transactionTypes } from '@/lib/interfaces'
+import {
+  TransactionProps,
+  TransactionProps,
+  transactionTypes,
+} from '@/lib/interfaces'
 import { Modal } from './modal'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CurrencyInput } from './ui/currency-input'
+import { transactionsFormSchema } from '@/lib/schemas'
+import { incomeCategories } from '@/lib/categories'
 
 const transactions = getTransactions()
 
@@ -127,12 +128,11 @@ export default function IncomesForm() {
                       <SelectLabel className="text-slate-500 font-medium">
                         Categoria
                       </SelectLabel>
-                      <SelectItem value="Salário">Salário</SelectItem>
-                      <SelectItem value="Receita variável">
-                        Receita variável
-                      </SelectItem>
-                      <SelectItem value="Investimento">Investimento</SelectItem>
-                      <SelectItem value="Outro">Outro</SelectItem>
+                      {incomeCategories.map((category, index) => (
+                        <SelectItem key={index} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
