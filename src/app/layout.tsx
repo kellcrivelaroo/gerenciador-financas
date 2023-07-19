@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body
         className={`${quicksand.className} text-blue-900 flex font-semibold text-lg`}
       >

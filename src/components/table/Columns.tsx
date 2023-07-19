@@ -25,7 +25,11 @@ export const columns: ColumnDef<TransactionProps>[] = [
     cell: ({ row }) => {
       const transaction: transactionTypes = row.getValue('tipo')
       const formatted =
-        transaction === transactionTypes.expense ? 'Despesa' : 'Receita'
+        transaction === transactionTypes.expense ? (
+          <span className="text-red-600">Despesa</span>
+        ) : (
+          <span className="text-green-600">Receita</span>
+        )
 
       return <div className="">{formatted}</div>
     },

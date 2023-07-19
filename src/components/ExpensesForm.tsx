@@ -40,6 +40,7 @@ import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { Modal } from './modal'
 import { v4 } from 'uuid'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CurrencyInput } from './ui/currency-input'
 
 const transactions = getTransactions()
 
@@ -65,7 +66,6 @@ export default function ExpensesForm() {
           <Modal.Content text="Despesa cadastrada com sucesso!" />
         </Modal.Root>
       )}
-
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {/* Data */}
@@ -87,7 +87,9 @@ export default function ExpensesForm() {
                         {field.value ? (
                           format(field.value, 'dd/MM/yyyy')
                         ) : (
-                          <span>Selecione uma data</span>
+                          <span className="font-medium">
+                            Selecione uma data
+                          </span>
                         )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
@@ -148,7 +150,7 @@ export default function ExpensesForm() {
               <FormItem>
                 <FormLabel>Valor</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <CurrencyInput {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -39,6 +39,9 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { Modal } from './modal'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CurrencyInput } from './ui/currency-input'
+
+const transactions = getTransactions()
 
 export default function IncomesForm() {
   const [success, setSuccess] = useState(false)
@@ -47,11 +50,10 @@ export default function IncomesForm() {
     resolver: zodResolver(transactionsFormSchema),
   })
 
-  const transactions = getTransactions()
-
   const onSubmit: SubmitHandler<TransactionProps> = (data) => {
     data.id = v4()
     data.tipo = transactionTypes.income
+    console.log(JSON.stringify(data))
     setTransactions(data, transactions)
     setSuccess(true)
   }
@@ -85,7 +87,9 @@ export default function IncomesForm() {
                         {field.value ? (
                           format(field.value, 'dd/MM/yyyy')
                         ) : (
-                          <span>Selecione uma data</span>
+                          <span className="font-medium">
+                            Selecione uma data
+                          </span>
                         )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
@@ -145,7 +149,7 @@ export default function IncomesForm() {
               <FormItem>
                 <FormLabel>Valor</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} />
+                  <CurrencyInput {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

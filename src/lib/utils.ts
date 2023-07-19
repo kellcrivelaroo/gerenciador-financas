@@ -43,21 +43,30 @@ export const transactionsFormSchema = z.object({
     invalid_type_error: 'Data inválida',
   }),
   categoria: z.string({ required_error: 'Selecione uma categoria' }),
-  valor: z.coerce
-    .number({
-      required_error: 'Digite o valor da transação',
-      invalid_type_error: 'Valor inválido',
-    })
-    .positive({ message: 'O valor deve ser maior que R$ 0,00' }),
+  valor: z.preprocess(
+    (v) => {
+      const value = String(v)
+      const noCurrencySymbleValue = String(value)
+        .slice(3, String(value).length)
+        .replace('.', '')
+        .replace(',', '.')
+
+      return Number(noCurrencySymbleValue)
+    },
+    z
+      .number({ invalid_type_error: 'Valor inválido' })
+      .positive('O valor deve ser maior que R$ 0,00'),
+  ),
   descricao: z
     .string({
       required_error: 'Digite uma descrição para a transação',
       invalid_type_error: 'Descrição inválida',
     })
     .min(3, 'A descrição deve conter no mínimo 3 dígitos'),
-  pago: z.string({
-    required_error: 'Selecione uma opção',
-    invalid_type_error: 'Opção inválida',
-  }),
-  teste: z.optional(z.string()),
+  pago: z.optional(
+    z.string({
+      required_error: 'Selecione uma opção',
+      invalid_type_error: 'Opção inválida',
+    }),
+  ),
 })
