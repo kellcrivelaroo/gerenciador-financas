@@ -31,11 +31,7 @@ import {
 } from '@/components/ui/select'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
-import {
-  TransactionProps,
-  TransactionProps,
-  transactionTypes,
-} from '@/lib/interfaces'
+import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { Modal } from './modal'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CurrencyInput } from './ui/currency-input'

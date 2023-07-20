@@ -30,7 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import { useForm, SubmitHandler, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { TransactionProps, transactionTypes } from '@/lib/interfaces'
 import { Modal } from './modal'
 import { v4 } from 'uuid'
