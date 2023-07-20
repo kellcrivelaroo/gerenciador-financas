@@ -1,12 +1,12 @@
 import Balance from '@/components/Balance'
-import Charts from '@/components/Charts'
+import ChartsRoot from '@/components/charts/ChartsRoot'
 import Transactions from '@/components/Transactions'
-import { Wallet, DollarSign } from 'lucide-react'
+import { Wallet, DollarSign, BarChart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="grid gap-4 grid-rows-[auto] xl:grid-rows-[auto_auto_600px] xl:grid-cols-3 xl:gap-6 pl-[80px] lg:pl-20 w-[100vw] lg:w-full">
+    <main className="grid gap-4 grid-rows-[auto] xl:grid-cols-3 xl:gap-6 pl-[80px] lg:pl-20 w-[100vw] lg:w-full">
       <header className="space-y-5 xl:col-span-3">
         <h1>Gerenciador de Finanças</h1>
         <span className="text-xl lg:text-2xl text-hover">Bem-vindo(a)!</span>
@@ -37,7 +37,11 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex flex-col bg-white border h-full xl:col-span-3 rounded-lg p-4">
-        <Charts />
+        <div className="flex justify-center xl:justify-start gap-2 items-center xl:pl-4 pt-2 text-blue-700">
+          <BarChart size={32} />
+          <h2 className="text-3xl ">Gráficos:</h2>
+        </div>
+        <ChartsRoot />
       </div>
     </main>
   )

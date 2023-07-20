@@ -72,7 +72,6 @@ export const getCategoryValues = (
   const categories: string[] = []
   const data: valueByCategory[] = []
   transactions.forEach((transaction) => {
-    console.log(categories)
     if (transaction.tipo === type) {
       if (!categories.includes(transaction.categoria)) {
         categories.push(transaction.categoria)

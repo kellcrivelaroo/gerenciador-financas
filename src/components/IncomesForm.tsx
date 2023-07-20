@@ -50,7 +50,6 @@ export default function IncomesForm() {
   const onSubmit: SubmitHandler<TransactionProps> = (data) => {
     data.id = v4()
     data.tipo = transactionTypes.income
-    console.log(JSON.stringify(data))
     setTransactions(data, transactions)
     setSuccess(true)
   }

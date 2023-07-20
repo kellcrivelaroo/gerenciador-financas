@@ -12,3 +12,8 @@ export interface TransactionProps {
   descricao: string
   pago?: string
 }
+
+export interface ChartProps {
+  transactions: TransactionProps[]
+  width: number
+}
