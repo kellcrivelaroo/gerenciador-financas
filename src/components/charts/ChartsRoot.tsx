@@ -22,9 +22,17 @@ export default function ChartsRoot() {
 
   return (
     <div className="flex flex-col xl:flex-row mt-4 flex-wrap items-center justify-center xl:justify-evenly gap-4 xl:gap-0">
-      <TransactionBarChart transactions={transactions} width={width} />
-      <ExpensesPieChart transactions={transactions} width={width} />
-      <IncomesPieChart transactions={transactions} width={width} />
+      {transactions.length > 0 ? (
+        <>
+          <TransactionBarChart transactions={transactions} width={width} />
+          <ExpensesPieChart transactions={transactions} width={width} />
+          <IncomesPieChart transactions={transactions} width={width} />
+        </>
+      ) : (
+        <span>
+          Cadastre novas despesas ou receitas para poder analisar os dados
+        </span>
+      )}
     </div>
   )
 }

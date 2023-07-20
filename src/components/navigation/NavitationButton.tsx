@@ -6,6 +6,7 @@ type NavitationButtonProps = {
   href: string
   text: string
   isOpen: boolean
+  toggle: () => void
   icon: LucideIcon
 }
 
@@ -13,13 +14,14 @@ export default function NavitationButton({
   href,
   text,
   isOpen,
+  toggle,
   icon: Icon,
 }: NavitationButtonProps) {
   const pathName = usePathname()
   const active = pathName === href
 
   return (
-    <li>
+    <li onClick={toggle}>
       <Link
         href={href}
         data-active={active}

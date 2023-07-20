@@ -17,30 +17,34 @@ export default function ExpensesPieChart({ transactions, width }: ChartProps) {
     transactions,
     transactionTypes.expense,
   )
-  console.log(width)
 
   return (
-    <div className="flex items-center justify-center flex-col">
-      <h3 className="text-center">Depesas por categoria:</h3>
-      <PieChart width={width} height={width}>
-        <Pie
-          data={expenseCategoryValues}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          paddingAngle={5}
-          dataKey="value"
-          nameKey="category"
-          label
-        >
-          {expenseCategoryValues.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
+    expenseCategoryValues.length > 0 && (
+      <div className="flex items-center justify-center flex-col">
+        <h3 className="text-center">Depesas por categoria:</h3>
+        <PieChart width={width} height={width}>
+          <Pie
+            data={expenseCategoryValues}
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={5}
+            dataKey="value"
+            nameKey="category"
+            label
+          >
+            {expenseCategoryValues.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
 
-        <Legend />
-        <Tooltip />
-      </PieChart>
-    </div>
+          <Legend />
+          <Tooltip />
+        </PieChart>
+      </div>
+    )
   )
 }

@@ -13,6 +13,10 @@ import { useState } from 'react'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const closeSideBar = () => {
+    setIsOpen(false)
+  }
+
   return (
     <aside
       data-open={isOpen}
@@ -36,30 +40,35 @@ export default function Navigation() {
               icon={Home}
               text="Home"
               isOpen={isOpen}
+              toggle={closeSideBar}
             />
             <NavitationButton
               href="/nova-despesa"
               icon={DollarSign}
               text="Nova Despesa"
               isOpen={isOpen}
+              toggle={closeSideBar}
             />
             <NavitationButton
               href="/nova-receita"
               icon={Wallet}
               text="Nova Receita"
               isOpen={isOpen}
+              toggle={closeSideBar}
             />
             <NavitationButton
               href="/graficos"
               icon={BarChart}
               text="Gráficos"
               isOpen={isOpen}
+              toggle={closeSideBar}
             />
             <NavitationButton
               href="/metas"
               icon={Crosshair}
               text="Metas"
               isOpen={isOpen}
+              toggle={closeSideBar}
             />
           </ul>
         </nav>
