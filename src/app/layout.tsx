@@ -2,6 +2,7 @@ import Navigation from '@/components/navigation/Navigation'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
+import Footer from '@/components/Footer'
 
 const quicksand = Quicksand({ subsets: ['latin'] })
 
@@ -22,7 +23,10 @@ export default function RootLayout({
         className={`${quicksand.className} text-blue-900 flex font-semibold text-lg`}
       >
         <Navigation />
-        {children}
+        <div className="flex flex-col min-h-screen justify-between w-full">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   )
