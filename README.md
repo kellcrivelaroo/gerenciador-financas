@@ -1,7 +1,8 @@
 # Gerenciador de Finanças
 
-Este é o repositório do Gerenciador de Finanças, um projeto pessoal desenvolvido em Next.js, React, Tailwind CSS e TypeScript. O objetivo deste projeto é criar um aplicativo para gerenciamento de finanças, permitindo que os usuários cadastrem suas despesas e receitas, além de fornecer recursos para análise dos dados através de gráficos.
+Este é o repositório do Gerenciador de Finanças, um projeto pessoal desenvolvido em **Next.js, React, Tailwind CSS e TypeScript**. O objetivo deste projeto é criar um aplicativo para gerenciamento de finanças, permitindo que os usuários cadastrem suas despesas e receitas, além de fornecer recursos para análise dos dados através de gráficos.
 
+https://gerenciador-financas-six.vercel.app/
 ![gerenciador-financas](https://github.com/kellcrivelaroo/gerenciador-financas/assets/133979933/3e208cd0-8496-4bd7-91dd-0dc01719a5a2)
 
 ## Aprendizados
