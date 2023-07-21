@@ -12,25 +12,24 @@ Utilizei o projeto para aprender sobre a implementação de algumas bibliotecas,
 - [x] **shadcn/ui**: Uma biblioteca de componentes reutilizáveis construídos com Radix UI e Tailwind CSS.
 - [x] **zod**: Utilizada para a validação de formulários.
 - [x] **recharts**: Responsável por gerar os gráficos a partir dos dados cadastrados.
+- [x] **jest**: Testes automatizados para garantir a qualidade do código.
 
 > Além do aprendizado na implementação das bibliotecas, utilizei o projeto para aplicar o conceito de **Component Pattern** em alguns dos meus componentes, tornando-os reutilizáveis e fáceis de manter. Esse padrão de desenvolvimento ajuda a melhorar a organização do código e a escalabilidade do projeto.
 
 ## Funcionalidades
 
 Atualmente, o Gerenciador de Finanças permite:
+
 - Cadastro de despesas.
 - Cadastro de receitas.
 - Visualização de gráficos gerados a partir dos dados cadastrados.
-
 
 ## Melhorias
 
 O projeto ainda está em desenvolvimento, e existem algumas pendências que pretendo abordar em versões futuras:
 
-- [ ] Escrever testes automatizados para garantir a qualidade do código.
 - [ ] Implementar novas funcionalidades na tabela de transações.
 - [ ] Aprimorar os gráficos e oferecer mais opções de análise de dados.
-
 
 ## Contribuindo
 
